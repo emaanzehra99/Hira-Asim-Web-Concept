@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Hira Asim — LinkedIn Branding & Content Design</title>
+
+    <meta name="description"
+        content="Hira Asim helps founders, creators and coaches build recognizable personal brands through LinkedIn strategy, content design and visual identity." />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+
+    <!-- ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- =========================
+         PRELOADER
+    ========================== -->
+
+    <div class="preloader">
+        <div class="preloader-inner">
+
+            <div class="loader-name">
+                HIRA<span>ASIM</span>
+            </div>
+
+            <div class="loader-line">
+                <span></span>
+            </div>
+
+            <div class="loader-counter">
+                <span id="loaderPercent">0</span>%
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         CURSOR
+    ========================== -->
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a href="#home" class="logo">
+            Hira <span>Asim</span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+
+        </nav>
+
+        <a href="#contact" class="nav-cta">
+            Let's Talk
+            <span>↗</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MOBILE MENU
+    ========================== -->
+
+    <div class="mobile-menu">
+
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Let's Talk ↗</a>
+
+    </div>
+
+
+    <main>
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="hero" id="home">
+
+            <div class="hero-grid"></div>
+
+            <div class="hero-glow hero-glow-one"></div>
+            <div class="hero-glow hero-glow-two"></div>
+
+            <div class="hero-line hero-line-one"></div>
+            <div class="hero-line hero-line-two"></div>
+
+            <div class="hero-content">
+
+                <div class="eyebrow reveal-up">
+                    <span class="eyebrow-dot"></span>
+                    LinkedIn Branding · Content Design · Visual Identity
+                </div>
+
+
+                <h1 class="hero-title">
+
+                    <span class="hero-line-text">
+                        Your brand
+                    </span>
+
+                    <span class="hero-line-text italic-word">
+                        should speak
+                    </span>
+
+                    <span class="hero-line-text">
+                        before you do.
+                    </span>
+
+                </h1>
+
+
+                <div class="hero-bottom">
+
+                    <p class="hero-description reveal-up">
+                        I help founders, creators and coaches turn their
+                        expertise into a LinkedIn presence people recognize,
+                        remember and trust.
+                    </p>
+
+                    <a href="#work" class="circle-button magnetic">
+                        <span>Explore<br>my work</span>
+                        <span class="circle-arrow">↘</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO IMAGE -->
+
+            <div class="hero-visual">
+
+                <div class="image-orbit orbit-one"></div>
+                <div class="image-orbit orbit-two"></div>
+
+                <div class="hero-image-wrapper">
+
+                    <!-- ADD HIRA'S IMAGE HERE -->
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQHn671FIDLYxQ/profile-displayphoto-crop_800_800/B4DaAB_7qGJUAI-/0/1786739934267?e=1790208000&v=beta&t=YBS25f182uhBRx-P18om9Sg31i6-Olk_0xyNFQ59Bmc" alt="Hira Asim" class="hero-image" />
+
+                </div>
+
+                <div class="image-label">
+                    <span>HIRA ASIM</span>
+                    <span>01 / 04</span>
+                </div>
+
+            </div>
+
+
+            <div class="hero-scroll">
+                <span>Scroll to explore</span>
+                <div class="scroll-line"></div>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MARQUEE
+        ========================== -->
+
+        <section class="marquee-section">
+
+            <div class="marquee">
+
+                <span>PERSONAL BRANDING</span>
+                <i>✦</i>
+
+                <span>LINKEDIN GROWTH</span>
+                <i>✦</i>
+
+                <span>CONTENT DESIGN</span>
+                <i>✦</i>
+
+                <span>VISUAL IDENTITY</span>
+                <i>✦</i>
+
+                <span>PERSONAL BRANDING</span>
+                <i>✦</i>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="about section-padding" id="about">
+
+            <div class="section-number">
+                01 / ABOUT
+            </div>
+
+            <div class="about-layout">
+
+                <div class="about-heading">
+
+                    <p class="section-kicker">
+                        More than visuals.
+                    </p>
+
+                    <h2>
+                        I make your
+                        <span>expertise</span>
+                        impossible to overlook.
+                    </h2>
+
+                </div>
+
+
+                <div class="about-copy">
+
+                    <p class="large-copy">
+                        Your audience shouldn't have to figure out
+                        what you do.
+                    </p>
+
+                    <p>
+                        A strong personal brand creates that clarity
+                        before the conversation even begins.
+                    </p>
+
+                    <p>
+                        From LinkedIn positioning and content strategy
+                        to visual identity and scroll-stopping content,
+                        I bring the pieces together so your brand feels
+                        like <strong>you</strong> — only clearer.
+                    </p>
+
+                    <a href="#contact" class="text-link">
+                        Let's make your brand clearer
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STATS
+        ========================== -->
+
+        <section class="stats-section">
+
+            <div class="stat-item">
+                <span class="stat-number">
+                    <span class="counter" data-target="7">0</span>K<span>+</span>
+                </span>
+                <span class="stat-label">
+                    Organic LinkedIn followers
+                </span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">
+                    <span class="counter" data-target="1">0</span>+
+                </span>
+                <span class="stat-label">
+                    Top 1% creators worked with
+                </span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">
+                    <span class="counter" data-target="100">0</span><span>%</span>
+                </span>
+                <span class="stat-label">
+                    Human-first approach
+                </span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">
+                    <span class="counter" data-target="1">0</span>
+                </span>
+                <span class="stat-label">
+                    Brand built around you
+                </span>
+            </div>
+
+        </section>
+
+        <!-- =========================
+             POSITIONING STATEMENT
+        ========================== -->
+
+        <section class="statement">
+
+            <div class="statement-line"></div>
+
+            <p>
+                A brand isn't just what you post.
+            </p>
+
+            <h2>
+                It's what people
+                <span>remember.</span>
+            </h2>
+
+            <div class="statement-line"></div>
+
+        </section>
+
+
+        <!-- =========================
+             WORK
+        ========================== -->
+
+        <section class="work section-padding" id="work">
+
+            <div class="section-header">
+
+                <div>
+                    <div class="section-number">
+                        02 / SELECTED WORK
+                    </div>
+
+                    <h2>
+                        Work that makes
+                        <span>people stop.</span>
+                    </h2>
+                </div>
+
+                <p>
+                    Because good design isn't decoration.
+                    It gives your message somewhere to land.
+                </p>
+
+            </div>
+
+
+            <div class="work-grid">
+
+
+                <!-- PROJECT 01 -->
+
+                <article class="project project-large">
+
+                    <div class="project-image">
+
+                        <div class="project-overlay"></div>
+
+                        <div class="project-placeholder">
+                            <span>PROJECT / 01</span>
+                            <strong>LINKEDIN<br>BRANDING</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="project-meta">
+
+                        <div>
+                            <span>LinkedIn Branding</span>
+                            <h3>Make the profile<br>match the expertise.</h3>
+                        </div>
+
+                        <span class="project-arrow">↗</span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 02 -->
+
+                <article class="project project-small">
+
+                    <div class="project-image">
+
+                        <div class="project-placeholder alt">
+                            <span>PROJECT / 02</span>
+                            <strong>CONTENT<br>DESIGN</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="project-meta">
+
+                        <div>
+                            <span>Content Design</span>
+                            <h3>Scroll-stopping<br>without shouting.</h3>
+                        </div>
+
+                        <span class="project-arrow">↗</span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 03 -->
+
+                <article class="project project-small">
+
+                    <div class="project-image">
+
+                        <div class="project-placeholder third">
+                            <span>PROJECT / 03</span>
+                            <strong>VISUAL<br>IDENTITY</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="project-meta">
+
+                        <div>
+                            <span>Visual Identity</span>
+                            <h3>Recognition<br>by design.</h3>
+                        </div>
+
+                        <span class="project-arrow">↗</span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SERVICES
+        ========================== -->
+
+        <section class="services section-padding" id="services">
+
+            <div class="section-number">
+                03 / WHAT I DO
+            </div>
+
+            <div class="services-intro">
+
+                <h2>
+                    Your brand has a story.
+                    <span>Let's make it visible.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="services-list">
+
+
+                <div class="service-row">
+
+                    <span class="service-number">01</span>
+
+                    <div class="service-title">
+                        <h3>LinkedIn Branding</h3>
+                        <p>
+                            Turn your profile into an intentional
+                            first impression.
+                        </p>
+                    </div>
+
+                    <span class="service-arrow">↗</span>
+
+                </div>
+
+
+                <div class="service-row">
+
+                    <span class="service-number">02</span>
+
+                    <div class="service-title">
+                        <h3>Content Design</h3>
+                        <p>
+                            Create visuals people recognize
+                            before they read your name.
+                        </p>
+                    </div>
+
+                    <span class="service-arrow">↗</span>
+
+                </div>
+
+
+                <div class="service-row">
+
+                    <span class="service-number">03</span>
+
+                    <div class="service-title">
+                        <h3>Personal Branding</h3>
+                        <p>
+                            Position your expertise so the right
+                            people understand it instantly.
+                        </p>
+                    </div>
+
+                    <span class="service-arrow">↗</span>
+
+                </div>
+
+
+                <div class="service-row">
+
+                    <span class="service-number">04</span>
+
+                    <div class="service-title">
+                        <h3>Visual Identity</h3>
+                        <p>
+                            Build a visual system that feels
+                            unmistakably yours.
+                        </p>
+                    </div>
+
+                    <span class="service-arrow">↗</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PHILOSOPHY
+        ========================== -->
+
+        <section class="philosophy">
+
+            <div class="philosophy-inner">
+
+                <div class="philosophy-label">
+                    THE HIRA ASIM APPROACH
+                </div>
+
+                <h2>
+                    Strategy
+                    <span>×</span>
+                    Creativity
+                    <span>×</span>
+                    Clarity
+                </h2>
+
+                <p>
+                    Because beautiful content without strategy
+                    is just noise.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROCESS
+        ========================== -->
+
+        <section class="process section-padding" id="process">
+
+            <div class="section-number">
+                04 / PROCESS
+            </div>
+
+            <div class="process-header">
+
+                <h2>
+                    No guesswork.
+                    <span>Just intention.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="process-list">
+
+
+                <div class="process-item">
+
+                    <div class="process-index">01</div>
+
+                    <div class="process-content">
+
+                        <h3>Understand</h3>
+
+                        <p>
+                            Your expertise, audience, goals,
+                            personality and what makes you different.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="process-item">
+
+                    <div class="process-index">02</div>
+
+                    <div class="process-content">
+
+                        <h3>Position</h3>
+
+                        <p>
+                            Turn all of that into a message people
+                            can understand without a second explanation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="process-item">
+
+                    <div class="process-index">03</div>
+
+                    <div class="process-content">
+
+                        <h3>Design</h3>
+
+                        <p>
+                            Build visuals and content around the
+                            message — not the other way around.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="process-item">
+
+                    <div class="process-index">04</div>
+
+                    <div class="process-content">
+
+                        <h3>Refine</h3>
+
+                        <p>
+                            Every detail gets sharpened until
+                            the brand feels unmistakably yours.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TESTIMONIAL
+        ========================== -->
+
+        <section class="testimonial section-padding">
+
+            <div class="quote-mark">“</div>
+
+            <blockquote>
+                Hira understands how to enhance a professional
+                brand on LinkedIn, making it more polished and memorable.
+            </blockquote>
+
+            <div class="quote-author">
+                <strong>Ali Raza</strong>
+                <span>LinkedIn Branding Client</span>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL CTA
+        ========================== -->
+
+        <section class="contact" id="contact">
+
+            <div class="contact-glow"></div>
+
+            <div class="contact-inner">
+
+                <div class="section-number">
+                    05 / LET'S TALK
+                </div>
+
+                <h2>
+                    Ready to make
+                    <span>your brand</span>
+                    impossible to ignore?
+                </h2>
+
+                <p>
+                    If your expertise is strong but your online
+                    presence doesn't reflect it yet, let's change that.
+                </p>
+
+                <a href="https://www.linkedin.com/in/hiraasim/" target="_blank" class="contact-button magnetic">
+                    <span>Connect with Me</span>
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-logo">
+                Hira <span>Asim</span>
+            </div>
+
+            <p>
+                LinkedIn Branding · Content Design · Visual Identity
+            </p>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Hira Asim
+            </span>
+
+            <a href="https://www.linkedin.com/in/hiraasim/" target="_blank">
+                LinkedIn ↗
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JS -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
