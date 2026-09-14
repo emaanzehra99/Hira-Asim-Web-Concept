@@ -1,487 +1,1020 @@
 /* =========================================================
-   HIRA ASIM — INTERACTIONS
-   ========================================================= */
+   HIRA ASIM — ROAR WITH VISUALS
+   INTERACTION + MOTION
+========================================================= */
 
-gsap.registerPlugin(ScrollTrigger);
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const body = document.body;
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mobileNavigation =
+        document.querySelector(".mobile-navigation");
+
+    const mobileLinks =
+        document.querySelectorAll(".mobile-nav-links a");
+
+    const cursor =
+        document.querySelector(".cursor");
+
+    const cursorRing =
+        document.querySelector(".cursor-ring");
 
 
-/* =========================================================
-   PRELOADER
-   ========================================================= */
+    /* =====================================================
+       MOBILE MENU
+    ====================================================== */
 
-const loaderPercent = document.querySelector("#loaderPercent");
-const loaderBar = document.querySelector(".loader-line span");
+    function openMenu() {
 
-let loaderValue = 0;
+        body.classList.add("menu-open");
 
-const loaderInterval = setInterval(() => {
+        if (menuToggle) {
+            menuToggle.classList.add("active");
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+            menuToggle.setAttribute(
+                "aria-label",
+                "Close navigation"
+            );
+        }
 
-    loaderValue += Math.floor(Math.random() * 8) + 2;
-
-    if (loaderValue >= 100) {
-
-        loaderValue = 100;
-
-        clearInterval(loaderInterval);
-
-        gsap.to(".preloader", {
-            yPercent: -100,
-            duration: 1.2,
-            ease: "power4.inOut",
-            delay: .3
-        });
-
-        startHeroAnimation();
     }
 
-    loaderPercent.textContent = loaderValue;
-    loaderBar.style.width = `${loaderValue}%`;
 
-}, 45);
+    function closeMenu() {
 
+        body.classList.remove("menu-open");
 
-/* =========================================================
-   HERO ANIMATION
-   ========================================================= */
+        if (menuToggle) {
+            menuToggle.classList.remove("active");
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+            menuToggle.setAttribute(
+                "aria-label",
+                "Open navigation"
+            );
+        }
 
-function startHeroAnimation() {
-
-    const tl = gsap.timeline();
-
-    tl.from(".navbar", {
-        y: -30,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-    })
-
-    .from(".eyebrow", {
-        y: 30,
-        opacity: 0,
-        duration: .8,
-        ease: "power3.out"
-    }, "-=.5")
-
-    .from(".hero-line-text", {
-        yPercent: 110,
-        opacity: 0,
-        stagger: .12,
-        duration: 1.2,
-        ease: "power4.out"
-    }, "-=.5")
-
-    .from(".hero-description", {
-        y: 30,
-        opacity: 0,
-        duration: .8,
-        ease: "power3.out"
-    }, "-=.7")
-
-    .from(".circle-button", {
-        scale: 0,
-        opacity: 0,
-        duration: 1,
-        ease: "elastic.out(1, .6)"
-    }, "-=.7")
-
-    .from(".hero-image-wrapper", {
-        y: 80,
-        opacity: 0,
-        scale: .9,
-        duration: 1.4,
-        ease: "power4.out"
-    }, "-=1")
-
-    .from(".orbit-one, .orbit-two", {
-        scale: .7,
-        opacity: 0,
-        duration: 1.4,
-        stagger: .1,
-        ease: "power3.out"
-    }, "-=1");
-
-}
-
-
-/* =========================================================
-   NAVBAR SCROLL
-   ========================================================= */
-
-const navbar = document.querySelector(".navbar");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 80) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
     }
 
-});
+
+    function toggleMenu() {
+
+        if (body.classList.contains("menu-open")) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+
+    }
 
 
-/* =========================================================
-   MOBILE MENU
-   ========================================================= */
-
-const menuToggle = document.querySelector(".menu-toggle");
-const mobileMenu = document.querySelector(".mobile-menu");
-
-menuToggle.addEventListener("click", () => {
-
-    mobileMenu.classList.toggle("open");
-
-});
+    if (menuToggle) {
+        menuToggle.addEventListener(
+            "click",
+            toggleMenu
+        );
+    }
 
 
-document.querySelectorAll(".mobile-menu a").forEach(link => {
+    mobileLinks.forEach((link) => {
 
-    link.addEventListener("click", () => {
-
-        mobileMenu.classList.remove("open");
-
-    });
-
-});
-
-
-/* =========================================================
-   CUSTOM CURSOR
-   ========================================================= */
-
-const cursorDot = document.querySelector(".cursor-dot");
-const cursorRing = document.querySelector(".cursor-ring");
-
-let mouseX = 0;
-let mouseY = 0;
-
-let ringX = 0;
-let ringY = 0;
-
-window.addEventListener("mousemove", (event) => {
-
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-
-    gsap.to(cursorDot, {
-        x: mouseX,
-        y: mouseY,
-        duration: .1
-    });
-
-});
-
-
-function animateCursor() {
-
-    ringX += (mouseX - ringX) * .12;
-    ringY += (mouseY - ringY) * .12;
-
-    gsap.set(cursorRing, {
-        x: ringX,
-        y: ringY
-    });
-
-    requestAnimationFrame(animateCursor);
-
-}
-
-animateCursor();
-
-
-/* =========================================================
-   MAGNETIC BUTTONS
-   ========================================================= */
-
-document.querySelectorAll(".magnetic").forEach(button => {
-
-    button.addEventListener("mousemove", (event) => {
-
-        const rect = button.getBoundingClientRect();
-
-        const x =
-            event.clientX -
-            rect.left -
-            rect.width / 2;
-
-        const y =
-            event.clientY -
-            rect.top -
-            rect.height / 2;
-
-        gsap.to(button, {
-            x: x * .15,
-            y: y * .15,
-            duration: .4,
-            ease: "power3.out"
+        link.addEventListener("click", () => {
+            closeMenu();
         });
 
     });
 
-    button.addEventListener("mouseleave", () => {
 
-        gsap.to(button, {
-            x: 0,
-            y: 0,
-            duration: .7,
-            ease: "elastic.out(1,.4)"
-        });
+    document.addEventListener("keydown", (event) => {
 
-    });
-
-});
-
-
-/* =========================================================
-   REVEAL ANIMATIONS
-   ========================================================= */
-
-gsap.utils.toArray(
-    ".about-heading, .about-copy, .section-header, .project, .services-intro, .service-row, .process-header, .process-item, blockquote"
-).forEach(element => {
-
-    gsap.from(element, {
-
-        y: 70,
-        opacity: 0,
-
-        duration: 1.1,
-
-        ease: "power4.out",
-
-        scrollTrigger: {
-
-            trigger: element,
-
-            start: "top 85%",
-
-            toggleActions: "play none none reverse"
-
+        if (event.key === "Escape") {
+            closeMenu();
         }
 
     });
 
-});
+
+    /*
+       If user resizes from mobile to desktop
+       while the menu is open, close it.
+    */
+
+    window.addEventListener("resize", () => {
+
+        if (
+            window.innerWidth > 900 &&
+            body.classList.contains("menu-open")
+        ) {
+            closeMenu();
+        }
+
+    });
 
 
-/* =========================================================
-   STATS COUNTER
-   ========================================================= */
+    /* =====================================================
+       CURSOR
+    ====================================================== */
 
-document.querySelectorAll(".counter").forEach(counter => {
+    if (
+        cursor &&
+        cursorRing &&
+        window.matchMedia("(hover: hover)").matches
+    ) {
 
-    const target = Number(counter.dataset.target);
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
 
-    ScrollTrigger.create({
+        let ringX = mouseX;
+        let ringY = mouseY;
 
-        trigger: counter,
 
-        start: "top 85%",
+        window.addEventListener("mousemove", (event) => {
 
-        once: true,
+            mouseX = event.clientX;
+            mouseY = event.clientY;
 
-        onEnter: () => {
+            cursor.style.left = `${mouseX}px`;
+            cursor.style.top = `${mouseY}px`;
 
-            const obj = { value: 0 };
+        });
 
-            gsap.to(obj, {
 
-                value: target,
+        function animateCursor() {
 
-                duration: 1.6,
+            ringX += (mouseX - ringX) * 0.12;
+            ringY += (mouseY - ringY) * 0.12;
 
-                ease: "power2.out",
+            cursorRing.style.left = `${ringX}px`;
+            cursorRing.style.top = `${ringY}px`;
 
-                onUpdate: () => {
-                    counter.textContent = Math.round(obj.value);
+            requestAnimationFrame(animateCursor);
+
+        }
+
+        animateCursor();
+
+
+        const hoverTargets = document.querySelectorAll(
+            "a, button, .work-card, .service-row, .transform-card"
+        );
+
+
+        hoverTargets.forEach((element) => {
+
+            element.addEventListener(
+                "mouseenter",
+                () => body.classList.add("cursor-hover")
+            );
+
+            element.addEventListener(
+                "mouseleave",
+                () => body.classList.remove("cursor-hover")
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       IMAGE FALLBACK
+    ====================================================== */
+
+    document.querySelectorAll("img").forEach((image) => {
+
+        image.addEventListener("error", () => {
+
+            image.classList.add("image-error");
+
+            const parent = image.parentElement;
+
+            if (parent) {
+                parent.style.background =
+                    "linear-gradient(135deg, #65152b, #181615)";
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       SMOOTH ANCHOR SCROLL
+    ====================================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+
+        link.addEventListener("click", (event) => {
+
+            const targetID =
+                link.getAttribute("href");
+
+            if (
+                !targetID ||
+                targetID === "#"
+            ) {
+                return;
+            }
+
+
+            const target =
+                document.querySelector(targetID);
+
+            if (!target) {
+                return;
+            }
+
+
+            event.preventDefault();
+
+
+            const headerOffset = 80;
+
+            const targetPosition =
+                target.getBoundingClientRect().top +
+                window.scrollY -
+                headerOffset;
+
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth"
+            });
+
+        });
+
+    });
+
+
+    /* =====================================================
+       GSAP
+    ====================================================== */
+
+    function initAnimations() {
+
+        if (
+            typeof gsap === "undefined" ||
+            typeof ScrollTrigger === "undefined"
+        ) {
+            return;
+        }
+
+
+        gsap.registerPlugin(ScrollTrigger);
+
+
+        /* -----------------------------------------------
+           LOADER
+        ------------------------------------------------ */
+
+        const loader =
+            document.querySelector(".loader");
+
+        const loaderSpans =
+            document.querySelectorAll(".loader-inner span");
+
+        const loaderBar =
+            document.querySelector(".loader-line span");
+
+
+        const loaderTimeline = gsap.timeline({
+            defaults: {
+                ease: "power4.out"
+            }
+        });
+
+
+        loaderTimeline
+            .to(loaderSpans, {
+                y: 0,
+                duration: 0.9,
+                stagger: 0.1
+            })
+            .to(loaderBar, {
+                width: "100%",
+                duration: 0.9,
+                ease: "power2.inOut"
+            }, "-=0.35")
+            .to(loader, {
+                yPercent: -100,
+                duration: 1.1,
+                ease: "power4.inOut"
+            }, "+=0.15")
+            .set(loader, {
+                display: "none"
+            })
+            .add(() => {
+                heroAnimation();
+            });
+
+
+        /* -----------------------------------------------
+           HERO
+        ------------------------------------------------ */
+
+        function heroAnimation() {
+
+            const heroLines =
+                document.querySelectorAll(".reveal-line");
+
+            gsap.fromTo(
+                heroLines,
+                {
+                    yPercent: 120,
+                    opacity: 0
+                },
+                {
+                    yPercent: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    stagger: 0.09,
+                    ease: "power4.out"
+                }
+            );
+
+
+            gsap.fromTo(
+                ".hero-topline",
+                {
+                    y: 20,
+                    opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    delay: 0.2,
+                    ease: "power3.out"
+                }
+            );
+
+
+            gsap.fromTo(
+                ".hero-image-wrap",
+                {
+                    y: 70,
+                    opacity: 0,
+                    clipPath: "inset(100% 0 0 0)"
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    clipPath: "inset(0% 0 0 0)",
+                    duration: 1.5,
+                    delay: 0.25,
+                    ease: "power4.out"
+                }
+            );
+
+
+            gsap.fromTo(
+                ".hero-copy",
+                {
+                    y: 35,
+                    opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    delay: 0.45,
+                    ease: "power3.out"
+                }
+            );
+
+
+            gsap.fromTo(
+                ".hero-bottom",
+                {
+                    y: 20,
+                    opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    delay: 0.7,
+                    ease: "power3.out"
+                }
+            );
+
+        }
+
+
+        /* -----------------------------------------------
+           GENERAL REVEALS
+        ------------------------------------------------ */
+
+        gsap.utils.toArray(
+            ".section-number, .eyebrow, .clarity-statement, .clarity-side"
+        ).forEach((element) => {
+
+            gsap.fromTo(
+                element,
+                {
+                    y: 40,
+                    opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 88%",
+                        once: true
+                    }
+                }
+            );
+
+        });
+
+
+        /* -----------------------------------------------
+           CLARITY HEADING
+        ------------------------------------------------ */
+
+        gsap.fromTo(
+            ".clarity-heading h2",
+            {
+                yPercent: 30,
+                opacity: 0
+            },
+            {
+                yPercent: 0,
+                opacity: 1,
+                duration: 1.3,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: ".clarity-heading",
+                    start: "top 75%",
+                    once: true
+                }
+            }
+        );
+
+
+        /* -----------------------------------------------
+           TRANSFORMATION CARDS
+        ------------------------------------------------ */
+
+        gsap.fromTo(
+            ".transform-card",
+            {
+                y: 80,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.18,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: ".transformation-grid",
+                    start: "top 75%",
+                    once: true
+                }
+            }
+        );
+
+
+        /* -----------------------------------------------
+           ABOUT IMAGES
+        ------------------------------------------------ */
+
+        gsap.utils.toArray(".reveal-image").forEach((image) => {
+
+            gsap.fromTo(
+                image,
+                {
+                    clipPath: "inset(100% 0 0 0)",
+                    y: 60
+                },
+                {
+                    clipPath: "inset(0% 0 0 0)",
+                    y: 0,
+                    duration: 1.4,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: image,
+                        start: "top 80%",
+                        once: true
+                    }
+                }
+            );
+
+        });
+
+
+        /* -----------------------------------------------
+           ABOUT CONTENT
+        ------------------------------------------------ */
+
+        gsap.fromTo(
+            ".about-content h2",
+            {
+                y: 80,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: ".about-content",
+                    start: "top 75%",
+                    once: true
+                }
+            }
+        );
+
+
+        gsap.fromTo(
+            ".about-copy p",
+            {
+                y: 30,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: ".about-copy",
+                    start: "top 82%",
+                    once: true
+                }
+            }
+        );
+
+
+        /* -----------------------------------------------
+           PROOF NUMBER
+        ------------------------------------------------ */
+
+        gsap.fromTo(
+            ".proof-number",
+            {
+                x: -100,
+                opacity: 0
+            },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 1.4,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: ".proof-section",
+                    start: "top 70%",
+                    once: true
+                }
+            }
+        );
+
+
+        gsap.fromTo(
+            ".proof-text",
+            {
+                x: 80,
+                opacity: 0
+            },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 1.1,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: ".proof-section",
+                    start: "top 70%",
+                    once: true
+                }
+            }
+        );
+
+
+        /* -----------------------------------------------
+           WORK HEADING
+        ------------------------------------------------ */
+
+        gsap.fromTo(
+            ".work-heading h2",
+            {
+                y: 70,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: ".work-heading",
+                    start: "top 75%",
+                    once: true
+                }
+            }
+        );
+
+
+        /* -----------------------------------------------
+           DESKTOP HORIZONTAL WORK
+        ------------------------------------------------ */
+
+        const workScroller =
+            document.querySelector(".work-scroller");
+
+
+        if (
+            workScroller &&
+            window.innerWidth > 900
+        ) {
+
+            const getScrollAmount = () => {
+
+                return Math.max(
+                    0,
+                    workScroller.scrollWidth -
+                    window.innerWidth +
+                    window.innerWidth * 0.08
+                );
+
+            };
+
+
+            gsap.to(workScroller, {
+
+                x: () => -getScrollAmount(),
+
+                ease: "none",
+
+                scrollTrigger: {
+                    trigger: ".work-section",
+                    start: "top top",
+                    end: () =>
+                        `+=${getScrollAmount() * 1.15}`,
+                    pin: true,
+                    scrub: 1,
+                    invalidateOnRefresh: true
                 }
 
             });
 
         }
 
-    });
 
-});
+        /* -----------------------------------------------
+           SERVICES
+        ------------------------------------------------ */
+
+        gsap.utils.toArray(".service-row").forEach(
+            (row, index) => {
+
+                gsap.fromTo(
+                    row,
+                    {
+                        x: index % 2 === 0
+                            ? -50
+                            : 50,
+                        opacity: 0
+                    },
+                    {
+                        x: 0,
+                        opacity: 1,
+                        duration: 0.9,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: row,
+                            start: "top 88%",
+                            once: true
+                        }
+                    }
+                );
+
+            }
+        );
 
 
-/* =========================================================
-   HERO IMAGE PARALLAX
-   ========================================================= */
+        /* -----------------------------------------------
+           MANIFESTO
+        ------------------------------------------------ */
 
-gsap.to(".hero-image-wrapper", {
+        gsap.utils.toArray(
+            ".manifesto-copy p"
+        ).forEach((line, index) => {
 
-    y: 50,
+            gsap.fromTo(
+                line,
+                {
+                    y: 60,
+                    opacity: 0.15
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: line,
+                        start: "top 88%",
+                        once: true
+                    }
+                }
+            );
 
-    scrollTrigger: {
+        });
 
-        trigger: ".hero",
 
-        start: "top top",
+        /* -----------------------------------------------
+           CONTACT
+        ------------------------------------------------ */
 
-        end: "bottom top",
+        gsap.fromTo(
+            ".contact-main h2",
+            {
+                y: 100,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1.3,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: ".contact-section",
+                    start: "top 75%",
+                    once: true
+                }
+            }
+        );
 
-        scrub: 1
+
+        /* -----------------------------------------------
+           PARALLAX IMAGES
+        ------------------------------------------------ */
+
+        gsap.utils.toArray(
+            ".about-image-main img, .about-image-small img"
+        ).forEach((image) => {
+
+            gsap.to(
+                image,
+                {
+                    yPercent: 8,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: image.parentElement,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                }
+            );
+
+        });
+
+
+        /* -----------------------------------------------
+           HERO BACKGROUND PARALLAX
+        ------------------------------------------------ */
+
+        gsap.to(
+            ".hero-background-word",
+            {
+                y: 130,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            }
+        );
+
+
+        /* -----------------------------------------------
+           MANIFESTO STAMP
+        ------------------------------------------------ */
+
+        gsap.to(
+            ".manifesto-stamp",
+            {
+                rotation: 370,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".manifesto-section",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            }
+        );
+
+
+        /* -----------------------------------------------
+           REFRESH
+        ------------------------------------------------ */
+
+        setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 500);
 
     }
 
-});
+
+    /* =====================================================
+       MAGNETIC BUTTONS
+    ====================================================== */
+
+    function initMagneticElements() {
+
+        if (
+            !window.matchMedia("(hover: hover)").matches
+        ) {
+            return;
+        }
 
 
-/* =========================================================
-   ORBIT ROTATION
-   ========================================================= */
-
-gsap.to(".orbit-one", {
-
-    rotation: 360,
-
-    duration: 30,
-
-    repeat: -1,
-
-    ease: "none"
-
-});
-
-gsap.to(".orbit-two", {
-
-    rotation: -360,
-
-    duration: 45,
-
-    repeat: -1,
-
-    ease: "none"
-
-});
+        const magneticElements =
+            document.querySelectorAll(".magnetic");
 
 
-/* =========================================================
-   HERO GLOW MOVEMENT
-   ========================================================= */
+        magneticElements.forEach((element) => {
 
-gsap.to(".hero-glow-one", {
+            element.addEventListener(
+                "mousemove",
+                (event) => {
 
-    x: -100,
-    y: 80,
+                    const rect =
+                        element.getBoundingClientRect();
 
-    duration: 7,
+                    const x =
+                        event.clientX -
+                        rect.left -
+                        rect.width / 2;
 
-    repeat: -1,
-
-    yoyo: true,
-
-    ease: "sine.inOut"
-
-});
+                    const y =
+                        event.clientY -
+                        rect.top -
+                        rect.height / 2;
 
 
-/* =========================================================
-   STATEMENT TEXT PARALLAX
-   ========================================================= */
+                    const strength =
+                        element.classList.contains("contact-button")
+                            ? 0.18
+                            : 0.28;
 
-gsap.from(".statement h2", {
 
-    y: 100,
+                    element.style.transform =
+                        `translate(${x * strength}px, ${y * strength}px)`;
 
-    opacity: 0,
+                }
+            );
 
-    scrollTrigger: {
 
-        trigger: ".statement",
+            element.addEventListener(
+                "mouseleave",
+                () => {
 
-        start: "top 70%",
+                    element.style.transform =
+                        "translate(0, 0)";
 
-        end: "center center",
+                }
+            );
 
-        scrub: 1
+        });
 
     }
 
+
+    /* =====================================================
+       INITIALIZE
+    ====================================================== */
+
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+
+        const loader =
+            document.querySelector(".loader");
+
+        if (loader) {
+            loader.style.display = "none";
+        }
+
+    } else {
+
+        initAnimations();
+
+    }
+
+
+    initMagneticElements();
+
+    // Your existing website JS above...
+
+
+    // ==============================
+    // TESTIMONIAL SLIDER
+    // ==============================
+
+    const testimonialSlides = document.querySelectorAll(".testimonial-slide");
+    const testimonialNext = document.querySelector(".testimonial-next");
+    const testimonialPrev = document.querySelector(".testimonial-prev");
+    const testimonialProgress = document.querySelector(".testimonial-progress");
+
+    let testimonialIndex = 0;
+    let testimonialTimer;
+
+    function showTestimonial(index) {
+        testimonialSlides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+        });
+
+        if (testimonialProgress) {
+            testimonialProgress.style.width =
+                `${((index + 1) / testimonialSlides.length) * 100}%`;
+        }
+    }
+
+    function nextTestimonial() {
+        testimonialIndex =
+            (testimonialIndex + 1) % testimonialSlides.length;
+
+        showTestimonial(testimonialIndex);
+    }
+
+    function previousTestimonial() {
+        testimonialIndex =
+            (testimonialIndex - 1 + testimonialSlides.length) %
+            testimonialSlides.length;
+
+        showTestimonial(testimonialIndex);
+    }
+
+    function startTestimonialAutoPlay() {
+        testimonialTimer = setInterval(nextTestimonial, 5500);
+    }
+
+    function resetTestimonialAutoPlay() {
+        clearInterval(testimonialTimer);
+        startTestimonialAutoPlay();
+    }
+
+    if (testimonialSlides.length) {
+        showTestimonial(0);
+        startTestimonialAutoPlay();
+    }
+
+    testimonialNext?.addEventListener("click", () => {
+        nextTestimonial();
+        resetTestimonialAutoPlay();
+    });
+
+    testimonialPrev?.addEventListener("click", () => {
+        previousTestimonial();
+        resetTestimonialAutoPlay();
+    });
+
+    // =========================================
+// BACK TO TOP
+// =========================================
+
+const backToTop = document.querySelector("#backToTop");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 700) {
+        backToTop?.classList.add("visible");
+    } else {
+        backToTop?.classList.remove("visible");
+    }
+});
+
+backToTop?.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 });
 
 
-/* =========================================================
-   SERVICE HOVER CURSOR
-   ========================================================= */
-
-document.querySelectorAll(".service-row").forEach(row => {
-
-    row.addEventListener("mouseenter", () => {
-
-        gsap.to(cursorRing, {
-
-            scale: 2,
-
-            borderColor: "rgba(239,44,145,.7)",
-
-            duration: .3
-
-        });
-
-    });
-
-    row.addEventListener("mouseleave", () => {
-
-        gsap.to(cursorRing, {
-
-            scale: 1,
-
-            borderColor: "rgba(239,44,145,.5)",
-
-            duration: .3
-
-        });
-
-    });
-
 });
-
-
-/* =========================================================
-   SMOOTH IMAGE HOVER
-   ========================================================= */
-
-document.querySelectorAll(".project-image").forEach(image => {
-
-    image.addEventListener("mouseenter", () => {
-
-        gsap.to(image, {
-
-            scale: .98,
-
-            duration: .6,
-
-            ease: "power3.out"
-
-        });
-
-    });
-
-    image.addEventListener("mouseleave", () => {
-
-        gsap.to(image, {
-
-            scale: 1,
-
-            duration: .6,
-
-            ease: "power3.out"
-
-        });
-
-    });
-
-});
-
-
-/* =========================================================
-   REFRESH SCROLLTRIGGER
-   ========================================================= */
-
-window.addEventListener("load", () => {
-
-    ScrollTrigger.refresh();
-
-});
+        
+        
